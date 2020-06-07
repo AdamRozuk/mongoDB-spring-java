@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 
-    @Autowired
     private final DatabaseService dbService;
 
+    @Autowired
     public MainController(DatabaseService dbService) {
         this.dbService = dbService;
     }
