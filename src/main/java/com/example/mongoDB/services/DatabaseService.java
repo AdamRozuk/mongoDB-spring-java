@@ -4,6 +4,9 @@ import com.mongodb.client.*;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class DatabaseService {
     final String uriString = "mongodb://localhost:27017";
@@ -16,23 +19,37 @@ public class DatabaseService {
         collection = mongoDB.getCollection("Film");
     }
 
-    public void showDatabaseCollection(){
+    public List<String> showDatabaseCollection(){
         this.setUpDatabaseConnection();
         FindIterable<Document> findIterable = collection.find(new Document());
 
+        List<String> list = new ArrayList<>();
         for (Document doc: findIterable) {
             System.out.println(doc.toJson());
+            list.add(doc.toJson());
         }
+        return list;
+        //mongoClient.close();
 
-        mongoClient.close();
     }
+
+
+    //public void showDatabaseCollection(){
+    //        this.setUpDatabaseConnection();
+    //        FindIterable<Document> findIterable = collection.find(new Document());
+    //
+    //        for (Document doc: findIterable) {
+    //            System.out.println(doc.toJson());
+    //        }
+    //
+    //        mongoClient.close();
 
     public void addRecordToDatabase(){
         this.setUpDatabaseConnection();
 
-        Document film = new Document("title", "Spring Boot")
-                .append("year", 2018)
-                .append("category", "Drama");
+        Document film = new Document("title", "The gretest")
+                .append("year", 2000)
+                .append("category", "Comedy");
 
         collection.insertOne(film);
         mongoClient.close();
