@@ -2,7 +2,6 @@ package com.example.mongoDB;
 
 import com.example.mongoDB.entities.Film;
 import com.example.mongoDB.repositiory.FilmRepository;
-import com.example.mongoDB.entities.Film;
 import com.example.mongoDB.services.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
