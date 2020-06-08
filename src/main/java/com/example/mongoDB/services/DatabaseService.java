@@ -1,5 +1,6 @@
 package com.example.mongoDB.services;
 
+import com.example.mongoDB.entities.Film;
 import com.mongodb.client.*;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -19,13 +20,13 @@ public class DatabaseService {
     public void setUpDatabaseConnection(){
         mongoClient = MongoClients.create(uriString);
         MongoDatabase mongoDB = mongoClient.getDatabase("myDB");
-        collection = mongoDB.getCollection("Film");
+        collection = mongoDB.getCollection("film");
     }
 
     public List<String> showDatabaseCollection(){
         this.setUpDatabaseConnection();
         FindIterable<Document> findIterable = collection.find();
-
+        list.clear();
         for (Document doc: findIterable) {
             System.out.println(doc.toJson());
             list.add(String.valueOf(doc.get("_id", ObjectId.class)));
@@ -38,14 +39,13 @@ public class DatabaseService {
         return list;
     }
 
-    public void addRecordToDatabase(){
+    public void addRecordToDatabase(Film film){
         this.setUpDatabaseConnection();
 
-        Document film = new Document("title", "The Greatest")
-                .append("year", 2000)
-                .append("category", "Comedy");
-
-        collection.insertOne(film);
+        Document doc= new Document("title", film.title)
+                .append("year", film.year)
+                .append("category", film.category);
+        collection.insertOne(doc);
         mongoClient.close();
     }
 }
