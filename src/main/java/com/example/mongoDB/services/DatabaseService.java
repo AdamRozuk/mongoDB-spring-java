@@ -2,9 +2,11 @@ package com.example.mongoDB.services;
 
 import com.mongodb.client.*;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -22,12 +24,16 @@ public class DatabaseService {
 
     public List<String> showDatabaseCollection(){
         this.setUpDatabaseConnection();
-        FindIterable<Document> findIterable = collection.find(new Document());
+        FindIterable<Document> findIterable = collection.find();
 
         for (Document doc: findIterable) {
             System.out.println(doc.toJson());
-            list.add(doc.toJson());
+            list.add(String.valueOf(doc.get("_id", ObjectId.class)));
+            list.add((String) doc.get("title"));
+            list.add(String.valueOf(doc.get("year")));
+            list.add((String) doc.get("category"));
         }
+
         mongoClient.close();
         return list;
     }
