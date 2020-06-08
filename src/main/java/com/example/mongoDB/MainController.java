@@ -27,7 +27,6 @@ public class MainController {
     @RequestMapping("/show")
     public List<String> show(){
         return dbService.showDatabaseCollection();
-        // return "Showed";
     }
 
 }

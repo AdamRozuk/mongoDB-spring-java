@@ -23,7 +23,7 @@ public class DatabaseService {
     public List<String> showDatabaseCollection(){
         this.setUpDatabaseConnection();
         FindIterable<Document> findIterable = collection.find(new Document());
-        
+
         for (Document doc: findIterable) {
             System.out.println(doc.toJson());
             list.add(doc.toJson());
