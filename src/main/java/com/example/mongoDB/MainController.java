@@ -1,9 +1,9 @@
 package com.example.mongoDB;
 
+import com.example.mongoDB.entities.Film;
 import com.example.mongoDB.services.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,15 +17,16 @@ public class MainController {
         this.dbService = dbService;
     }
 
-    @RequestMapping("/addFilm")
-    public String addFilms(){
-        dbService.addRecordToDatabase();
-        return "Add record to Database";
-    }
-
+    @GetMapping
     @RequestMapping("/show")
     public List<String> show(){
         return dbService.showDatabaseCollection();
+    }
+
+    @PostMapping
+    @RequestMapping("/addFilm")
+    public void addFilm(@RequestBody Film film ){
+        dbService.addRecordToDatabase(film);
     }
 
 }
