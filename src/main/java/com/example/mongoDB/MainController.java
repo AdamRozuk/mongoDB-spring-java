@@ -18,18 +18,11 @@ public class MainController {
         this.dbService = dbService;
     }
 
-    @RequestMapping("/home")
-    public String showFilms(){
-        dbService.showDatabaseCollection();
-        return "Show Films";
-    }
-
     @RequestMapping("/addFilm")
     public String addFilms(){
         dbService.addRecordToDatabase();
         return "Add record to Database";
     }
-
 
     @RequestMapping("/show")
     public List<String> show(){

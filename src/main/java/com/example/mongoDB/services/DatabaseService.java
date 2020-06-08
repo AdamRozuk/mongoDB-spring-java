@@ -12,6 +12,7 @@ public class DatabaseService {
     final String uriString = "mongodb://localhost:27017";
     private MongoClient mongoClient;
     private MongoCollection<Document> collection;
+    private List<String> list = new ArrayList<>();
 
     public void setUpDatabaseConnection(){
         mongoClient = MongoClients.create(uriString);
@@ -22,32 +23,19 @@ public class DatabaseService {
     public List<String> showDatabaseCollection(){
         this.setUpDatabaseConnection();
         FindIterable<Document> findIterable = collection.find(new Document());
-
-        List<String> list = new ArrayList<>();
+        
         for (Document doc: findIterable) {
             System.out.println(doc.toJson());
             list.add(doc.toJson());
         }
+        mongoClient.close();
         return list;
-        //mongoClient.close();
-
     }
-
-
-    //public void showDatabaseCollection(){
-    //        this.setUpDatabaseConnection();
-    //        FindIterable<Document> findIterable = collection.find(new Document());
-    //
-    //        for (Document doc: findIterable) {
-    //            System.out.println(doc.toJson());
-    //        }
-    //
-    //        mongoClient.close();
 
     public void addRecordToDatabase(){
         this.setUpDatabaseConnection();
 
-        Document film = new Document("title", "The gretest")
+        Document film = new Document("title", "The Greatest")
                 .append("year", 2000)
                 .append("category", "Comedy");
 
