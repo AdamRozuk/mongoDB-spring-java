@@ -1,6 +1,7 @@
 package com.example.mongoDB.services;
 
 import com.example.mongoDB.entities.Film;
+import com.example.mongoDB.repositiory.FilmRepository;
 import com.mongodb.client.*;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -15,6 +16,11 @@ public class DatabaseService {
     private MongoClient mongoClient;
     private MongoCollection<Document> collection;
     private List<String> list = new ArrayList<>();
+    private final FilmRepository repository;
+
+    public DatabaseService(FilmRepository repository) {
+        this.repository = repository;
+    }
 
     public void setUpDatabaseConnection(){
         mongoClient = MongoClients.create(uriString);
@@ -46,5 +52,10 @@ public class DatabaseService {
                 .append("category", film.category);
         collection.insertOne(doc);
         mongoClient.close();
+    }
+
+    public List<Film> showFindByCategory(){
+        return repository.findByCategory("Drama");
+
     }
 }

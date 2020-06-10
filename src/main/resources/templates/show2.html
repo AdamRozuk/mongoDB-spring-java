@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en"
+      xml:lang="en"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Show2 panel</title>
+</head>
+<body>
+<h2>This is show2 panel</h2>
+
+<div align="center" >
+    <a th:href="@{show}" target="blank">Show</a>
+    <a th:href="@{show2}">Show2</a>
+    <a th:href="@{home}">Home</a>
+    <a th:href="@{test}">Test</a>
+    <a th:href="@{showFindByCategory}">showFindByCategory</a>
+
+
+</div>
+
+<ul>
+    <!--/*@thymesVar id="show2" type="String"*/-->
+    <li th:each="Filmy: ${show2}">
+        <!--        th:each="Filmy: ${show2}"-->
+        <!--        <span th:text="${show.}">Default</span>-->
+        <span th:text="${Filmy}">Default</span>
+    </li>
+</ul>
+</body>
+
+</html>

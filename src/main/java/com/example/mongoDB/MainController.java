@@ -12,7 +12,6 @@ import java.util.List;
 public class MainController {
 
     private final DatabaseService dbService;
-
     private final FilmRepository repository;
 
     @Autowired
@@ -25,7 +24,7 @@ public class MainController {
     @RequestMapping("/show")
     public List<String> show(){
         return dbService.showDatabaseCollection();
-    }
+    } // show to poprzednie wyświetlanie.
 
     @PostMapping
     @RequestMapping("/addFilm")
@@ -35,7 +34,7 @@ public class MainController {
 
     @GetMapping
     @RequestMapping("/test")
-    public void test() throws Exception {
+    public void test() {
         repository.save(new Film("Repository",2000,"Drama"));
         System.out.println("find all films");
         for (Film film: repository.findAll()) {
@@ -43,7 +42,6 @@ public class MainController {
         }
         System.out.println("Find by name");
         System.out.println(repository.findByTitle("RepositoryXX"));
-
     }
 
 }
