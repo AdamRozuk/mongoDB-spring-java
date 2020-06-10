@@ -23,11 +23,12 @@ public class FilmController {
     @RequestMapping(value = "/home")
     public String index(
             @RequestParam(value = "title", required = false) String title,
-            @RequestParam(value = "year", required = false) String year,
-            @RequestParam(value = "category", required = false) String category,
-            @RequestParam(value = "id", required = false) String id
+            @RequestParam(value = "year", required = false) Integer year,
+            @RequestParam(value = "category", required = false) String category
     ) {
-        System.out.println(title);
+        if (title != null && year != null && category != null){
+            repository.insert(new Film(title,year,category));
+        }
         return "index";
     }
 

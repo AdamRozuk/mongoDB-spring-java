@@ -52,7 +52,9 @@
         <a th:href="@{showFindByCategory}" target="blank">showFindByCategory</a>
     </div>
     <form th:action="@{/home}">
-        <input type="text" th:name="title"/>
+        <input type="text" placeholder="Enter film title" th:name="title"/>
+        <input type="text" placeholder="Enter film year" th:name="year"/>
+        <input type="text" placeholder="Enter film category" th:name="category"/>
         <input type="submit"/>
     </form>
 </div>
