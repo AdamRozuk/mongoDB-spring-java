@@ -54,11 +54,13 @@
         a.linkNav {
             /*color: #ffffff;*/
             text-decoration: none;
-            display: block;
-            float:left;
+            /*display: block;*/
+            /*float:left;*/
+            display:inline-block;
             padding: 5px;
             color: #3095d3;
             text-align: center;
+            align-items: center;
         }
         #list
         {
@@ -83,10 +85,9 @@
     <div style="clear: both" ></div>
     <div >
         <ul>
-            <!--/*@thymesVar id="show2" type="String"*/-->
             <li class="list" th:each="Filmy: ${showFindByCategory}">
-                <!--        <span th:text="${show.}">Default</span>-->
-                <span th:text="${Filmy}">Default</span>
+                <span th:text="${Filmy}">Default </span>
+                <button>Delete</button>
             </li>
         </ul>
     </div>
