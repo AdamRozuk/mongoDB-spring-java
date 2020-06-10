@@ -24,9 +24,11 @@
             width: 300px;
             margin-left: auto;
             margin-right: auto;
+            text-align: center;
         }
 
         #logo {
+
             background-color: black;
             color: white;
             text-align: center;
@@ -34,11 +36,38 @@
         }
 
         #navigation {
+            margin-left: auto;
+            margin-right: auto;
             color: white;
             padding: 10px;
+            align: center;
+            text-align: center;
+        }
+
+        #form {
+
+            padding: 5px;
+            color: white;
+            text-align: center;
+        }
+
+        a.linkNav {
+            /*color: #ffffff;*/
+            text-decoration: none;
+            display: block;
+            float:left;
+            padding: 5px;
+            color: #3095d3;
+            text-align: center;
+        }
+        #list
+        {
+            align: center;
+            padding: 5px;
+            color: white;
         }
     </style>
-        <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 
@@ -46,20 +75,24 @@
     <div id="logo">
         <h1>Home Page</h1>
     </div>
-    <div id="navigation" align="center" >
-        <a th:href="@{home}">Home</a>
-        <a th:href="@{test}">Test</a>
-        <a th:href="@{showFindByCategory}">showFindByCategory</a>
+    <div id="navigation" >
+        <a class="linkNav" th:href="@{home}"><b> Home </b></a>
+        <a class="linkNav" th:href="@{test}"><b> Test </b></a>
+        <a class="linkNav" th:href="@{showFindByCategory}"><b> showFindByCategory </b></a>
+    </div>
+    <div style="clear: both" ></div>
+    <div >
+        <ul>
+            <!--/*@thymesVar id="show2" type="String"*/-->
+            <li class="list" th:each="Filmy: ${showFindByCategory}">
+                <!--        <span th:text="${show.}">Default</span>-->
+                <span th:text="${Filmy}">Default</span>
+            </li>
+        </ul>
     </div>
 </div>
 
-<ul>
-    <!--/*@thymesVar id="show2" type="String"*/-->
-    <li th:each="Filmy: ${showFindByCategory}">
-        <!--        <span th:text="${show.}">Default</span>-->
-        <span th:text="${Filmy}">Default</span>
-    </li>
-</ul>
+
 
 </body>
 </html>
