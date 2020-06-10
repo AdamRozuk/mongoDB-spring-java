@@ -27,7 +27,7 @@ public class FilmController {
             @RequestParam(value = "title", required = false) String title,
             @RequestParam(value = "year", required = false) String year,
             @RequestParam(value = "category", required = false) String category,
-            @RequestParam(value = "id", required = false) Integer id
+            @RequestParam(value = "id", required = false) String id
     ) {
         System.out.println(title);
         return "index";
