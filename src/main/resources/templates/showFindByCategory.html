@@ -15,14 +15,6 @@
             color: #ffffff;
         }
 
-        container {
-
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
-
         #logo {
 
             background-color: black;
@@ -40,12 +32,6 @@
             text-align: center;
         }
 
-        #form {
-            padding: 5px;
-            color: white;
-            text-align: center;
-        }
-
         a.linkNav {
             text-decoration: none;
             display: inline-block;
@@ -55,11 +41,12 @@
             align-items: center;
         }
 
-        #list {
+        .list {
             align: center;
             padding: 5px;
             color: white;
         }
+
     </style>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
@@ -76,11 +63,11 @@
     </div>
     <div style="clear: both"></div>
     <div>
-        <ul>
-            <li class="list" th:each="Filmy: ${showFindByCategory}">
-                <span th:text="${Filmy}">Default </span>
-                <button>Delete</button>
-            </li>
+        <ul class="list" th:each="Filmy: ${showFindByCategory}">
+
+
+                   <button >Delete</button>  <span th:text="${Filmy}">Default </span>
+
         </ul>
     </div>
 </div>
