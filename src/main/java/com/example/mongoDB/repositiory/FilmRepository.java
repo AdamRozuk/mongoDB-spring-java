@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface FilmRepository extends MongoRepository<Film, String> {
 
-    Film findByTitle(String title);
+    Film findFirstByTitle(String title);
     List<Film> findByCategory(String category);
 }

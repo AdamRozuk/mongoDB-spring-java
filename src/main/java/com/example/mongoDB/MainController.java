@@ -5,6 +5,8 @@ import com.example.mongoDB.repositiory.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 public class MainController {
 
@@ -18,7 +20,19 @@ public class MainController {
     @PostMapping
     @RequestMapping("/addFilm")
     public void addFilm(@RequestBody Film film ){
-        repository.save(film);
+        repository.insert(film);
+    }
+
+    @PutMapping
+    @RequestMapping("/updateFilm")
+    public void updateFilm(@RequestBody Film film, @RequestParam String id){
+        Optional<Film> filmToUpdate = repository.findById(id);
+        if(filmToUpdate.isPresent()){
+            filmToUpdate.get().setTitle(film.getTitle());
+            filmToUpdate.get().setYear(film.getYear());
+            filmToUpdate.get().setCategory(film.getCategory());
+        }
+        filmToUpdate.ifPresent(repository::save);
     }
 
     @GetMapping
@@ -29,7 +43,7 @@ public class MainController {
             System.out.println(film);
         }
         System.out.println("Find by name");
-        System.out.println(repository.findByTitle("RepositoryXX"));
+        System.out.println(repository.findFirstByTitle("Repository"));
     }
 
 }

@@ -51,6 +51,10 @@
         <a th:href="@{test}" target="blank">Test</a>
         <a th:href="@{showFindByCategory}" target="blank">showFindByCategory</a>
     </div>
+    <form th:action="@{/home}">
+        <input type="text" th:name="title"/>
+        <input type="submit"/>
+    </form>
 </div>
 
 </body>
