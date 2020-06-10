@@ -48,7 +48,6 @@
         }
 
     </style>
-    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 
@@ -64,7 +63,9 @@
     <div style="clear: both"></div>
     <div>
         <ul class="list" th:each="Filmy: ${showFindByCategory}">
-            <button>Delete</button>
+            <button type="button">
+                <a th:href="@{/showFindByCategory/{id}(id=${Filmy.id})}" style="text-decoration:none; color: black; ">Delete</a>
+            </button>
             <span style="display:none" id="1" th:text="${Filmy.id}">Default </span>
             Title: <span id="2" th:text="${Filmy.title}">Default </span>
             Year: <span id="3" th:text="${Filmy.year}">Default </span>
