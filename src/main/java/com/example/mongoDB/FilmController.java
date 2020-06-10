@@ -1,7 +1,7 @@
 package com.example.mongoDB;
 
 import com.example.mongoDB.entities.Film;
-import com.example.mongoDB.services.DatabaseService;
+import com.example.mongoDB.repositiory.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +12,11 @@ import java.util.List;
 
 @Controller
 public class FilmController {
-    private final DatabaseService dbService;
+    private final FilmRepository repository;
 
     @Autowired
-    public FilmController(DatabaseService dbService) {
-        this.dbService = dbService;
+    public FilmController(FilmRepository repository) {
+        this.repository = repository;
     }
 
     @RequestMapping(value = "/home")
@@ -27,7 +27,7 @@ public class FilmController {
     @GetMapping
     @RequestMapping("/showFindByCategory")
     public String showFindByCategory(Model model) {
-        List<Film> showFindByCategory = dbService.showFindByCategory();
+        List<Film> showFindByCategory = repository.findByCategory("Drama");
         model.addAttribute("showFindByCategory", showFindByCategory);
         return "showFindByCategory";
     }
