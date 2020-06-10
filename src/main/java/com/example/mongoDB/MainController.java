@@ -6,8 +6,6 @@ import com.example.mongoDB.services.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 public class MainController {
 
@@ -19,12 +17,6 @@ public class MainController {
         this.dbService = dbService;
         this.repository = repository;
     }
-
-    @GetMapping
-    @RequestMapping("/show")
-    public List<String> show(){
-        return dbService.showDatabaseCollection();
-    } // show to poprzednie wyświetlanie.
 
     @PostMapping
     @RequestMapping("/addFilm")
