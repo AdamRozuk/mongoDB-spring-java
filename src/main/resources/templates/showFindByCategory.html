@@ -64,10 +64,11 @@
     <div style="clear: both"></div>
     <div>
         <ul class="list" th:each="Filmy: ${showFindByCategory}">
-
-
-                   <button >Delete</button>  <span th:text="${Filmy}">Default </span>
-
+            <button>Delete</button>
+            <span style="display:none" id="1" th:text="${Filmy.id}">Default </span>
+            Title: <span id="2" th:text="${Filmy.title}">Default </span>
+            Year: <span id="3" th:text="${Filmy.year}">Default </span>
+            Category: <span id="4" th:text="${Filmy.category}">Default </span>
         </ul>
     </div>
 </div>
