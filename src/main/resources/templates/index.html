@@ -2,16 +2,12 @@
 <html lang="en"
       xml:lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
->
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" content="IE=edge,chrome=1"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="description" content="main page of the project for database classes">
     <title>Home Page</title>
-
-<!--    <link href="css/bootstrap.min.css.map" rel="stylesheet"/>-->
-    <!--    to powyzej zdaje sie nic nie robi xd-->
 
     <style>
         body {
@@ -33,12 +29,25 @@
             padding: 5px;
         }
 
+        a.linkNav {
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px;
+            color: #3095d3;
+            text-align: center;
+            align-items: center;
+        }
+
         #navigation {
+            margin-left: auto;
+            margin-right: auto;
             color: white;
             padding: 10px;
+            align: center;
+            text-align: center;
         }
     </style>
-        <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 
@@ -46,18 +55,18 @@
     <div id="logo">
         <h1>Home Page</h1>
     </div>
-    <div id="navigation" align="center" >
-        <a th:href="@{home}">Home</a>
-        <a th:href="@{test}" target="blank">Test</a>
-        <a th:href="@{showFindByCategory}" target="blank">showFindByCategory</a>
+    <div id="navigation">
+        <a class="linkNav" th:href="@{home}"><b> Home </b></a>
+        <a class="linkNav" th:href="@{test}"><b> Test </b></a>
+        <a class="linkNav" th:href="@{showFindByCategory}"><b> showFindByCategory </b></a>
     </div>
     <div align="center">
-    <form th:action="@{/home}">
-        <input type="text" placeholder="Enter film title" th:name="title"/>
-        <input type="text" placeholder="Enter film year" th:name="year"/>
-        <input type="text" placeholder="Enter film category" th:name="category"/>
-        <input type="submit" value="Add"/>
-    </form>
+        <form th:action="@{/home}">
+            <input type="text" placeholder="Enter film title" th:name="title"/>
+            <input type="text" placeholder="Enter film year" th:name="year"/>
+            <input type="text" placeholder="Enter film category" th:name="category"/>
+            <input type="submit" value="Add"/>
+        </form>
     </div>
 </div>
 

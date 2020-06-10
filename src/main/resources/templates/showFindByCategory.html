@@ -2,16 +2,12 @@
 <html lang="en"
       xml:lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
->
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" content="IE=edge,chrome=1"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="description" content="main page of the project for database classes">
     <title>Home Page</title>
-
-
-    <!--    to powyzej zdaje sie nic nie robi xd-->
 
     <style>
         body {
@@ -45,25 +41,21 @@
         }
 
         #form {
-
             padding: 5px;
             color: white;
             text-align: center;
         }
 
         a.linkNav {
-            /*color: #ffffff;*/
             text-decoration: none;
-            /*display: block;*/
-            /*float:left;*/
-            display:inline-block;
+            display: inline-block;
             padding: 5px;
             color: #3095d3;
             text-align: center;
             align-items: center;
         }
-        #list
-        {
+
+        #list {
             align: center;
             padding: 5px;
             color: white;
@@ -77,13 +69,13 @@
     <div id="logo">
         <h1>Home Page</h1>
     </div>
-    <div id="navigation" >
+    <div id="navigation">
         <a class="linkNav" th:href="@{home}"><b> Home </b></a>
         <a class="linkNav" th:href="@{test}"><b> Test </b></a>
         <a class="linkNav" th:href="@{showFindByCategory}"><b> showFindByCategory </b></a>
     </div>
-    <div style="clear: both" ></div>
-    <div >
+    <div style="clear: both"></div>
+    <div>
         <ul>
             <li class="list" th:each="Filmy: ${showFindByCategory}">
                 <span th:text="${Filmy}">Default </span>
@@ -92,8 +84,6 @@
         </ul>
     </div>
 </div>
-
-
 
 </body>
 </html>
