@@ -34,23 +34,31 @@ public class FilmController {
     }
 
 
-    @RequestMapping("/showFindByCategory")
+    @RequestMapping("/findFilms")
     public String showFindByCategory(
             Model model) {
-        List<Film> showFindByCategory = repository.findByCategory("Drama");
-        model.addAttribute("showFindByCategory", showFindByCategory);
-        return "showFindByCategory";
+        List<Film> findFilms = repository.findAll();
+        model.addAttribute("findFilms", findFilms);
+        return "findFilms";
     }
 
-    @RequestMapping("/showFindByCategory/{id}")
+//    @RequestMapping("/showFindByCategory")
+//    public String showFindByCategory(
+//            Model model) {
+//        List<Film> showFindByCategory = repository.findByCategory("Drama");
+//        model.addAttribute("showFindByCategory", showFindByCategory);
+//        return "showFindByCategory";
+//    }
+
+    @RequestMapping("/findFilms/{id}")
     public String deleteElement(
             @PathVariable(value = "id") String id,
             Model model) {
         Optional<Film> filmToDelete = repository.findById(id);
         filmToDelete.ifPresent(repository::delete);
-        List<Film> showFindByCategory = repository.findByCategory("Drama");
-        model.addAttribute("showFindByCategory", showFindByCategory);
-        return "showFindByCategory";
+        List<Film> findFilms = repository.findAll();
+        model.addAttribute("findFilms", findFilms);
+        return "findFilms";
     }
 
 }
