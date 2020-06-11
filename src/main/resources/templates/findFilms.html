@@ -30,7 +30,7 @@
             padding: 10px;
             align: center;
             text-align: center;
-            font-size:large;
+            font-size: large;
         }
 
         a.linkNav {
@@ -58,10 +58,17 @@
     </div>
     <div id="navigation">
         <a class="linkNav" th:href="@{/home}"><b> Home </b></a>
-        <a class="linkNav" th:href="@{/test}"><b> Test </b></a>
         <a class="linkNav" th:href="@{/findFilms}"><b> Find Films </b></a>
     </div>
     <div style="clear: both"></div>
+
+    <div>
+        <form th:action="@{/findFilms/category}">
+            <input type="text" placeholder="Enter film category" th:name="category"/>
+            <input type="submit" value="Find"/>
+        </form>
+    </div>
+
     <div>
         <ul class="list" th:each="Filmy: ${findFilms}">
             <button type="button">
@@ -73,6 +80,7 @@
             Category: <span id="4" th:text="${Filmy.category}">Default </span>
         </ul>
     </div>
+
 </div>
 
 </body>

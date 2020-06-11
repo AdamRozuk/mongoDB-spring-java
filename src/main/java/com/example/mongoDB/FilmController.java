@@ -33,7 +33,6 @@ public class FilmController {
         return "index";
     }
 
-
     @RequestMapping("/findFilms")
     public String showFindByCategory(
             Model model) {
@@ -41,14 +40,6 @@ public class FilmController {
         model.addAttribute("findFilms", findFilms);
         return "findFilms";
     }
-
-//    @RequestMapping("/showFindByCategory")
-//    public String showFindByCategory(
-//            Model model) {
-//        List<Film> showFindByCategory = repository.findByCategory("Drama");
-//        model.addAttribute("showFindByCategory", showFindByCategory);
-//        return "showFindByCategory";
-//    }
 
     @RequestMapping("/findFilms/{id}")
     public String deleteElement(
@@ -60,5 +51,16 @@ public class FilmController {
         model.addAttribute("findFilms", findFilms);
         return "findFilms";
     }
+
+@RequestMapping("/findFilms/category")
+public String findCategory(
+        @RequestParam(value = "category", required = false) String category,
+        Model model) {
+    List<Film> findFilms = repository.findByCategory(category);
+    model.addAttribute("findFilms", findFilms);
+    return "findFilms";
+
+
+}
 
 }

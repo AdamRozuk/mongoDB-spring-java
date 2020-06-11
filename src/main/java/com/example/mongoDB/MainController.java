@@ -17,12 +17,6 @@ public class MainController {
         this.repository = repository;
     }
 
-    @PostMapping
-    @RequestMapping("/addFilm")
-    public void addFilm(@RequestBody Film film ){
-        repository.insert(film);
-    }
-
     @PutMapping
     @RequestMapping("/updateFilm")
     public void updateFilm(@RequestBody Film film, @RequestParam String id){
@@ -33,17 +27,6 @@ public class MainController {
             filmToUpdate.get().setCategory(film.getCategory());
         }
         filmToUpdate.ifPresent(repository::save);
-    }
-
-    @GetMapping
-    @RequestMapping("/test")
-    public void test() {
-        System.out.println("find all films");
-        for (Film film: repository.findAll()) {
-            System.out.println(film);
-        }
-        System.out.println("Find by name");
-        System.out.println(repository.findFirstByTitle("Repository"));
     }
 
 }
