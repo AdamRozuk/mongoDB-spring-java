@@ -72,6 +72,12 @@
             <input type="submit" value="Find"/>
         </form>
     </div>
+    <div class="padding">
+        <form th:action="@{/findFilms/title}">
+            <input type="text" placeholder="Enter film title" th:name="title"/>
+            <input type="submit" value="Find"/>
+        </form>
+    </div>
 
     <div>
         <ul class="list" th:each="Filmy: ${findFilms}">

@@ -52,15 +52,22 @@ public class FilmController {
         return "findFilms";
     }
 
-@RequestMapping("/findFilms/category")
-public String findCategory(
-        @RequestParam(value = "category", required = false) String category,
-        Model model) {
-    List<Film> findFilms = repository.findByCategory(category);
-    model.addAttribute("findFilms", findFilms);
-    return "findFilms";
+    @RequestMapping("/findFilms/category")
+    public String findCategory(
+            @RequestParam(value = "category", required = false) String category,
+            Model model) {
+        List<Film> findFilms = repository.findByCategory(category);
+        model.addAttribute("findFilms", findFilms);
+        return "findFilms";
 
+    }
+    @RequestMapping("/findFilms/title")
+    public String findTitle(
+            @RequestParam(value = "title", required = false) String title,
+            Model model) {
+        Film findFilms = repository.findFirstByTitle(title);
+        model.addAttribute("findFilms", findFilms);
+        return "findFilms";
 
-}
-
+    }
 }
