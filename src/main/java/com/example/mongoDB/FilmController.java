@@ -39,13 +39,10 @@ public class FilmController {
         if (title != null && year != null && category != null) {
             repository.insert(new Film(title, year, category));
         }
-        System.out.println(userId);
         return "addFilm";
     }
     @RequestMapping(value = "/login")
-    public String login(
-            @PathVariable(value = "email", required = false) String email, Model model
-    ) {
+    public String login() {
         return "index";
     }
 
@@ -53,9 +50,10 @@ public class FilmController {
     public String AddUser(
             @PathVariable(value = "email", required = false) String email, Model model
     ) {
-        userRepository.insert(new User(email));
-//        userRepository.getId();
-        userId=email;
+        User user = new User(email);
+        userRepository.insert(user);
+        String id =user.getId();
+        userId=id;
         return "addFilm";
     }
 

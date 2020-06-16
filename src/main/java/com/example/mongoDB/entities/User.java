@@ -20,8 +20,8 @@ public class User {
 
     public User(String nickname) {
         this.nickname = nickname;
-        role="user";
-        likedFilmsId= new ArrayList<>() ;
+        this.role="user";
+        this.likedFilmsId= new ArrayList<>() ;
 
     }
 
