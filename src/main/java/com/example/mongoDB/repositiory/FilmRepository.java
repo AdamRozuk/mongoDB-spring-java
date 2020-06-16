@@ -11,4 +11,5 @@ public interface FilmRepository extends MongoRepository<Film, String> {
 
     List<Film> findByCategory(String category);
     List<Film> findByTitle(String title);
+
 }

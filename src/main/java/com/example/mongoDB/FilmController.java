@@ -1,7 +1,9 @@
 package com.example.mongoDB;
 
 import com.example.mongoDB.entities.Film;
+import com.example.mongoDB.entities.User;
 import com.example.mongoDB.repositiory.FilmRepository;
+import com.example.mongoDB.repositiory.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,12 @@ import java.util.Optional;
 @Controller
 public class FilmController {
     private final FilmRepository repository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public FilmController(FilmRepository repository) {
+    public FilmController(FilmRepository repository, UserRepository userRepository) {
         this.repository = repository;
+        this.userRepository = userRepository;
     }
 
     @RequestMapping(value = "/home")
@@ -34,10 +38,19 @@ public class FilmController {
         return "addFilm";
     }
     @RequestMapping(value = "/login")
-    public String login() {
+    public String login(
+            @PathVariable(value = "email", required = false) String email, Model model
+    ) {
         return "index";
     }
 
+    @RequestMapping(value = "/home/{email}")
+    public String AddUser(
+            @PathVariable(value = "email", required = false) String email, Model model
+    ) {
+        userRepository.insert(new User(email));
+        return "addFilm";
+    }
 
     @RequestMapping("/findFilms")
     public String showFindByCategory(
