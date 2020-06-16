@@ -19,11 +19,15 @@ import java.util.Optional;
 public class FilmController {
     private final FilmRepository repository;
     private final UserRepository userRepository;
+    private String userId;
+
 
     @Autowired
-    public FilmController(FilmRepository repository, UserRepository userRepository) {
+    public FilmController(FilmRepository repository,
+                          UserRepository userRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
+//        this.userId = userId;
     }
 
     @RequestMapping(value = "/home")
@@ -35,6 +39,7 @@ public class FilmController {
         if (title != null && year != null && category != null) {
             repository.insert(new Film(title, year, category));
         }
+        System.out.println(userId);
         return "addFilm";
     }
     @RequestMapping(value = "/login")
@@ -49,6 +54,8 @@ public class FilmController {
             @PathVariable(value = "email", required = false) String email, Model model
     ) {
         userRepository.insert(new User(email));
+//        userRepository.getId();
+        userId=email;
         return "addFilm";
     }
 
@@ -115,6 +122,7 @@ public class FilmController {
         Optional<Film> filmToUpdate = repository.findById(id);
         filmToUpdate.ifPresent(film -> film.setLikes(film.getLikes() + 1));
         filmToUpdate.ifPresent(repository::save);
+
 
         return new RedirectView("/findFilms");
     }

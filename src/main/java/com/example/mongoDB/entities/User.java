@@ -7,13 +7,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 
-
 @Document
 @Getter
 @Setter
 public class User {
 
     @Id
+    public String id;
     public String nickname;
     public ArrayList<String> likedFilmsId;
     public String role;
