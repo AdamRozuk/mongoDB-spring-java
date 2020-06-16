@@ -22,7 +22,7 @@ public class User {
         this.nickname = nickname;
         this.role="user";
         this.likedFilmsId= new ArrayList<>() ;
-
     }
+
 
 }
