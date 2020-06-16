@@ -51,9 +51,13 @@ public class FilmController {
             @PathVariable(value = "email", required = false) String email, Model model
     ) {
         User user = new User(email);
-        userRepository.insert(user);
-        String id =user.getId();
-        userId=id;
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if(optionalUser.isPresent()){
+            if(!optionalUser.get().getNickname().equals(email))
+                userRepository.insert(user);
+                userId= user.getId();
+        }
+
         return "addFilm";
     }
 
