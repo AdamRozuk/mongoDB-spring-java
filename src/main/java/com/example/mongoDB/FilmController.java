@@ -65,7 +65,7 @@ public class FilmController {
     public String findTitle(
             @RequestParam(value = "title", required = false) String title,
             Model model) {
-        List<Film> findFilms = repository.findFilmsByTitle(title);
+        List<Film> findFilms = repository.findByTitle(title);
         model.addAttribute("findFilms", findFilms);
         return "findFilms";
 
