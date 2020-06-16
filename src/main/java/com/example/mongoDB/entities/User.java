@@ -15,6 +15,7 @@ public class User {
     @Id
     public String nickname;
     public List<String> LikedFilmsId;
+    public String role;
 
     public User(String nickname) {
         this.nickname = nickname;
