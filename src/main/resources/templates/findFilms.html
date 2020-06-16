@@ -92,16 +92,19 @@
     <div>
         <ul class="list" th:each="Filmy: ${findFilms}">
             <button type="button">
-                <a th:href="@{/findFilms/{id}(id=${Filmy.id})}" style="text-decoration:none; color: black; ">Delete</a>
+                <a th:href="@{/deleteFilm/{id}(id=${Filmy.id})}" style="text-decoration:none; color: black; ">Delete</a>
             </button>
             <button type="button">
-                <a th:href="@{/updateFilm/{id}(id=${Filmy.id})}" style="text-decoration:none; color: black; ">Update</a>
+                <a style="text-decoration:none; color: black; " th:href="@{/updateFilm/{id}(id=${Filmy.id})}">Update</a>
             </button>
             <span style="display:none" id="1" th:text="${Filmy.id}">Default </span>
             Title: <span class="bolderTitle" id="2" th:text="${Filmy.title}">Default </span>
             Year: <span class="bolder" id="3" th:text="${Filmy.year}">Default </span>
             Category: <span class="bolder" id="4"  th:text="${Filmy.category}"  >Default</span>
             Likes: <span id="5" class="bolder" th:text="${Filmy.likes}">Default </span>
+            <button type="button">
+                <a style="text-decoration:none; color: black; " th:href="@{/likeFilm/{id}(id=${Filmy.id})}">Like</a>
+            </button>
         </ul>
     </div>
 

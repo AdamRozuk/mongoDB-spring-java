@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,15 +42,15 @@ public class FilmController {
         return "findFilms";
     }
 
-    @RequestMapping("/findFilms/{id}")
-    public String deleteElement(
+    @RequestMapping("/deleteFilm/{id}")
+    public RedirectView deleteElement(
             @PathVariable(value = "id") String id,
             Model model) {
         Optional<Film> filmToDelete = repository.findById(id);
         filmToDelete.ifPresent(repository::delete);
         List<Film> findFilms = repository.findAll();
         model.addAttribute("findFilms", findFilms);
-        return "findFilms";
+        return new RedirectView("/findFilms");
     }
 
     @RequestMapping("/findFilms/category")
@@ -88,5 +89,13 @@ public class FilmController {
             filmToUpdate.ifPresent(repository::save);
         }
         return "updateFilm";
+    }
+
+    @RequestMapping("/likeFilm/{id}")
+    public RedirectView likeFilm(@PathVariable(value = "id") String id) {
+        Optional<Film> filmToUpdate = repository.findById(id);
+        filmToUpdate.ifPresent(film -> film.setLikes(film.getLikes() + 1));
+        filmToUpdate.ifPresent(repository::save);
+        return new RedirectView("/findFilms");
     }
 }
