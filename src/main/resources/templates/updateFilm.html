@@ -46,18 +46,18 @@
 
 <div class="container">
     <div id="logo">
-        <h1>Home Page</h1>
+        <h1>Update Film</h1>
     </div>
     <div id="navigation">
         <a class="linkNav" th:href="@{/home}"><b> Home </b></a>
         <a class="linkNav" th:href="@{/findFilms}"><b> Find Films </b></a>
     </div>
     <div align="center">
-        <form th:action="@{/home}">
+        <form th:action="@{/updateFilm/{id}(id=${filmId})}">
             <input type="text" placeholder="Enter film title" th:name="title"/>
             <input type="text" placeholder="Enter film year" th:name="year"/>
             <input type="text" placeholder="Enter film category" th:name="category"/>
-            <input type="submit" value="Add"/>
+            <input type="submit" value="Update"/>
         </form>
     </div>
 </div>

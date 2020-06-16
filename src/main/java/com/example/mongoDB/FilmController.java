@@ -68,6 +68,25 @@ public class FilmController {
         List<Film> findFilms = repository.findByTitle(title);
         model.addAttribute("findFilms", findFilms);
         return "findFilms";
+    }
 
+    @RequestMapping("/updateFilm/{id}")
+    public String updateFilm( @PathVariable(value = "id") String id,
+                              @RequestParam(value = "title", required = false) String title,
+                              @RequestParam(value = "year", required = false) Integer year,
+                              @RequestParam(value = "category", required = false) String category,
+                              Model model) {
+
+        model.addAttribute("filmId",id);
+        if (title != null || year != null || category != null) {
+            Optional<Film> filmToUpdate = repository.findById(id);
+            if (filmToUpdate.isPresent()) {
+                filmToUpdate.get().setTitle(title);
+                filmToUpdate.get().setYear(year);
+                filmToUpdate.get().setCategory(category);
+            }
+            filmToUpdate.ifPresent(repository::save);
+        }
+        return "updateFilm";
     }
 }

@@ -94,6 +94,9 @@
             <button type="button">
                 <a th:href="@{/findFilms/{id}(id=${Filmy.id})}" style="text-decoration:none; color: black; ">Delete</a>
             </button>
+            <button type="button">
+                <a th:href="@{/updateFilm/{id}(id=${Filmy.id})}" style="text-decoration:none; color: black; ">Update</a>
+            </button>
             <span style="display:none" id="1" th:text="${Filmy.id}">Default </span>
             Title: <span class="bolderTitle" id="2" th:text="${Filmy.title}">Default </span>
             Year: <span class="bolder" id="3" th:text="${Filmy.year}">Default </span>
