@@ -115,6 +115,7 @@ public class FilmController {
         Optional<Film> filmToUpdate = repository.findById(id);
         filmToUpdate.ifPresent(film -> film.setLikes(film.getLikes() + 1));
         filmToUpdate.ifPresent(repository::save);
+
         return new RedirectView("/findFilms");
     }
 }
