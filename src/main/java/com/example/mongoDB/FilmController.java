@@ -51,13 +51,8 @@ public class FilmController {
             @PathVariable(value = "email", required = false) String email, Model model
     ) {
         User user = new User(email);
-        Optional<User> optionalUser = userRepository.findById(userId);
-        if(optionalUser.isPresent()){
-            if(!optionalUser.get().getNickname().equals(email))
-                userRepository.insert(user);
-                userId= user.getId();
-        }
-
+        userRepository.insert(user);
+        userId= user.getId();
         return "addFilm";
     }
 
@@ -125,15 +120,6 @@ public class FilmController {
         filmToUpdate.ifPresent(film -> film.setLikes(film.getLikes() + 1));
         filmToUpdate.ifPresent(repository::save);
 
-//        Optional<Film> filmToDelete = repository.findById(id);
-//        filmToDelete.ifPresent(repository::delete);
-//        List<Film> findFilms = repository.findAll();
-//        model.addAttribute("findFilms", findFilms);
-
-
-//        currentUser.ge
-//        userRepository.ge
-//        userRepository.findById(userId)
 
         Optional<User> currentUser=userRepository.findById(userId);
         int a=0;
@@ -153,9 +139,6 @@ public class FilmController {
             currentUser.ifPresent(userRepository::save);
         });
         }
-//        currentUser.ifPresent(user -> {
-//            user.getLikedFilmsId(id));
-//        });
 
 
         return new RedirectView("/findFilms");
