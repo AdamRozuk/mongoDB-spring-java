@@ -79,8 +79,9 @@ public class FilmController {
                               Model model) {
 
         model.addAttribute("filmId",id);
+        Optional<Film> filmToUpdate = repository.findById(id);
+        filmToUpdate.ifPresent(film -> model.addAttribute("film", film));
         if (title != null || year != null || category != null) {
-            Optional<Film> filmToUpdate = repository.findById(id);
             if (filmToUpdate.isPresent()) {
                 filmToUpdate.get().setTitle(title);
                 filmToUpdate.get().setYear(year);

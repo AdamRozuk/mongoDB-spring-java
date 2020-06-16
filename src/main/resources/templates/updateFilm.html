@@ -54,9 +54,9 @@
     </div>
     <div align="center">
         <form th:action="@{/updateFilm/{id}(id=${filmId})}">
-            <input type="text" placeholder="Enter film title" th:name="title"/>
-            <input type="text" placeholder="Enter film year" th:name="year"/>
-            <input type="text" placeholder="Enter film category" th:name="category"/>
+            <input type="text" placeholder="Enter film title" th:name="title" th:value="${film.getTitle()}"/>
+            <input type="text" placeholder="Enter film year" th:name="year" th:value="${film.getYear()}"/>
+            <input type="text" placeholder="Enter film category" th:name="category" th:value="${film.getCategory()}"/>
             <input type="submit" value="Update"/>
         </form>
     </div>
