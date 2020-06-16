@@ -15,11 +15,13 @@ public class Film {
     public String title;
     public Integer year;
     public String category;
+    public Integer like;
 
     public Film(String title, Integer year, String category) {
         this.title = title;
         this.year = year;
         this.category = category;
+        like=0;
     }
 
     @Override
@@ -29,6 +31,7 @@ public class Film {
                 ", title='" + title + '\'' +
                 ", year=" + year +
                 ", category='" + category + '\'' +
+                ", like='" + like + '\'' +
                 '}';
     }
 }

@@ -51,7 +51,16 @@
         {
             padding: 5px;
         }
+        .bolder
+        {
+            font-weight: bolder;
+        }
 
+        .bolderTitle
+        {
+            font-weight: bolder;
+            color:hotpink;
+        }
     </style>
 </head>
 <body>
@@ -85,9 +94,10 @@
                 <a th:href="@{/findFilms/{id}(id=${Filmy.id})}" style="text-decoration:none; color: black; ">Delete</a>
             </button>
             <span style="display:none" id="1" th:text="${Filmy.id}">Default </span>
-            Title: <span id="2" th:text="${Filmy.title}">Default </span>
-            Year: <span id="3" th:text="${Filmy.year}">Default </span>
-            Category: <span id="4" th:text="${Filmy.category}">Default </span>
+            Title: <span class="bolderTitle" id="2" th:text="${Filmy.title}">Default </span>
+            Year: <span class="bolder" id="3" th:text="${Filmy.year}">Default </span>
+            Category: <span class="bolder" id="4"  th:text="${Filmy.category}"  >Default</span>
+            Like: <span id="5" class="bolder" th:text="${Filmy.like}">Default </span>
         </ul>
     </div>
 
