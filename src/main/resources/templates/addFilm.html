@@ -10,7 +10,7 @@
     <meta name="google-signin-client_id"
           content="226092442596-cog1iqmuv99ihl0eh3somgmiqa6v66un.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <title>Home Page</title>
+    <title>Add Film</title>
     <style>
         body {
             background-color: #303030;
@@ -43,11 +43,6 @@
             font-size: large;
         }
 
-        .freePlace {
-            padding: 20px;
-            align: center;
-        }
-
     </style>
 </head>
 <body>
@@ -55,32 +50,22 @@
 
 <div class="container">
     <div id="logo">
-        <h1>Login Page</h1>
+        <h1>Add Film Page</h1>
     </div>
     <div id="navigation">
         <a class="linkNav" th:href="@{/login}"><b> Login </b></a>
         <a class="linkNav" th:href="@{/home}"><b> Home </b></a>
-        <a class="linkNav" th:href="@{/findFilms}"><b> Find Films </b></a>
+        <a class="linkNav" th:href="@{/findFilms}"><b> List of Films </b></a>
+    </div>
+    <div align="center">
+        <form th:action="@{/home}">
+            <input type="text" placeholder="Enter film title" th:name="title"/>
+            <input type="text" placeholder="Enter film year" th:name="year"/>
+            <input type="text" placeholder="Enter film category" th:name="category"/>
+            <input type="submit" value="Add"/>
+        </form>
     </div>
 </div>
-<div class="freePlace">
-         <div   align="center" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
 
-    </div>
-    <div id="s1"> </div>
-</div>
-
-<div align="center" class="padding">
-    <button onClick="function signOut() {
-var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-}
-signOut()"> Sign Out
-    </button>
-
-</div>
 </body>
-
 </html>

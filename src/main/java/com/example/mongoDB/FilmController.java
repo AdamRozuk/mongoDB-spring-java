@@ -31,8 +31,13 @@ public class FilmController {
         if (title != null && year != null && category != null) {
             repository.insert(new Film(title, year, category));
         }
+        return "addFilm";
+    }
+    @RequestMapping(value = "/login")
+    public String login() {
         return "index";
     }
+
 
     @RequestMapping("/findFilms")
     public String showFindByCategory(
