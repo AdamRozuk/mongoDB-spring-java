@@ -117,25 +117,26 @@ public class FilmController {
     @RequestMapping("/likeFilm/{id}")
     public RedirectView likeFilm(@PathVariable(value = "id") String id, Model model) {
         Optional<Film> filmToUpdate = repository.findById(id);
+        if(userId != null) {
+            Optional<User> currentUser = userRepository.findById(userId);
+            int a = 0;
+            if (currentUser.isPresent()) {
+                for (String val : currentUser.get().getLikedFilmsId()
+                ) {
+                    if (val.equals(id)) {
+                        a = 1;
 
-        Optional<User> currentUser = userRepository.findById(userId);
-        int a = 0;
-        if (currentUser.isPresent()) {
-            for (String val : currentUser.get().getLikedFilmsId()
-            ) {
-                if (val.equals(id)) {
-                    a = 1;
-
+                    }
                 }
             }
-        }
-        if (a == 0) {
-            currentUser.ifPresent(user -> {
-                user.getLikedFilmsId().add(id);
-                currentUser.ifPresent(userRepository::save);
-                filmToUpdate.ifPresent(film -> film.setLikes(film.getLikes() + 1));
-                filmToUpdate.ifPresent(repository::save);
-            });
+            if (a == 0) {
+                currentUser.ifPresent(user -> {
+                    user.getLikedFilmsId().add(id);
+                    currentUser.ifPresent(userRepository::save);
+                    filmToUpdate.ifPresent(film -> film.setLikes(film.getLikes() + 1));
+                    filmToUpdate.ifPresent(repository::save);
+                });
+            }
         }
 
         return new RedirectView("/findFilms");
