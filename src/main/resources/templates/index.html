@@ -58,9 +58,9 @@
         <h1>Login Page</h1>
     </div>
     <div id="navigation">
-        <a class="linkNav" th:href="@{/login}"><b> Login </b></a>
-        <a class="linkNav" th:href="@{/home}"><b> Home </b></a>
-        <a class="linkNav" th:href="@{/findFilms}"><b> Find Films </b></a>
+        <a class="linkNav" id= "link1" th:href="@{/login}"><b> Login </b></a>
+        <a class="linkNav" id= "link2"  th:href="@{/home}"><b> Home </b></a>
+        <a class="linkNav" id= "link3" th:href="@{/findFilms}"><b> Find Films </b></a>
     </div>
 </div>
 <div class="freePlace">
@@ -102,10 +102,20 @@ signOut()"> Sign Out
         console.log("ID Token: " + id_token);
 
         var email=googleUser.getBasicProfile().getEmail();
-        var element = document.querySelector('#content');
-        var email2='home/';
-        element.innerText = googleUser.getBasicProfile().getEmail();
-        element.innerHTML= '<a href='+email2+email+'>Confirm </a>';
+        var login='http://localhost:8080/login/';
+        var home='http://localhost:8080/home/';
+        var findFilms2='http://localhost:8080/findFilms2/';
+
+        var element2 = document.querySelector('#link1');
+        element2.innerHTML= '<a class="linkNav"  href='+login+email+'>Login </a>';
+
+        var element3 = document.querySelector('#link2');
+        element3.innerHTML= '<a  class="linkNav" href='+home+email+'>Home </a>';
+
+        var element4 = document.querySelector('#link3');
+        element4.innerHTML= '<a  class="linkNav" href='+findFilms2+email+'>Find Films </a>';
+
+
     }
 </script>
 

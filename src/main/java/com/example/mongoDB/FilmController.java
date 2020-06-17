@@ -42,18 +42,45 @@ public class FilmController {
         return "addFilm";
     }
     @RequestMapping(value = "/login")
-    public String login() {
+    public String login(
+
+    ) {
         return "index";
     }
+    @RequestMapping(value = "/login/{email}")
+    public String addUserLogin(
+            @PathVariable(value = "email", required = false) String email, Model model
+    ) {
+        if(userId == null) {
+            User user = new User(email);
+            userRepository.insert(user);
+            userId = user.getId();
+        }
+        return "index";
+    }
+
 
     @RequestMapping(value = "/home/{email}")
     public String AddUser(
             @PathVariable(value = "email", required = false) String email, Model model
     ) {
-        User user = new User(email);
-        userRepository.insert(user);
-        userId= user.getId();
+        if(userId == null) {
+            User user = new User(email);
+            userRepository.insert(user);
+            userId = user.getId();
+        }
         return "addFilm";
+    }
+    @RequestMapping("/findFilms2/{email}")
+    public String addUserFilms(
+            @PathVariable(value = "email", required = false) String email, Model model
+    ) {
+        if(userId == null) {
+            User user = new User(email);
+            userRepository.insert(user);
+            userId = user.getId();
+        }
+        return "findFilms";
     }
 
     @RequestMapping("/findFilms")
