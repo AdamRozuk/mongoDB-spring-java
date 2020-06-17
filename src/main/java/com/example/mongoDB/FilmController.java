@@ -80,6 +80,8 @@ public class FilmController {
             userRepository.insert(user);
             userId = user.getId();
         }
+        List<Film> findFilms = repository.findAll();
+        model.addAttribute("findFilms", findFilms);
         return "findFilms";
     }
 
@@ -95,11 +97,14 @@ public class FilmController {
     public RedirectView deleteElement(
             @PathVariable(value = "id") String id,
             Model model) {
-        Optional<Film> filmToDelete = repository.findById(id);
-        filmToDelete.ifPresent(repository::delete);
-        List<Film> findFilms = repository.findAll();
-        model.addAttribute("findFilms", findFilms);
-        return new RedirectView("/findFilms");
+        if(userId != null) {
+            Optional<Film> filmToDelete = repository.findById(id);
+            filmToDelete.ifPresent(repository::delete);
+            List<Film> findFilms = repository.findAll();
+            model.addAttribute("findFilms", findFilms);
+        }
+            return new RedirectView("/findFilms");
+
     }
 
     @RequestMapping("/findFilms/category")
@@ -127,18 +132,21 @@ public class FilmController {
                               @RequestParam(value = "category", required = false) String category,
                               Model model) {
 
-        model.addAttribute("filmId",id);
-        Optional<Film> filmToUpdate = repository.findById(id);
-        filmToUpdate.ifPresent(film -> model.addAttribute("film", film));
-        if (title != null || year != null || category != null) {
-            if (filmToUpdate.isPresent()) {
-                filmToUpdate.get().setTitle(title);
-                filmToUpdate.get().setYear(year);
-                filmToUpdate.get().setCategory(category);
+            model.addAttribute("filmId", id);
+            Optional<Film> filmToUpdate = repository.findById(id);
+            filmToUpdate.ifPresent(film -> model.addAttribute("film", film));
+            if (title != null || year != null || category != null) {
+                if (filmToUpdate.isPresent()) {
+                    filmToUpdate.get().setTitle(title);
+                    filmToUpdate.get().setYear(year);
+                    filmToUpdate.get().setCategory(category);
+                }
+                filmToUpdate.ifPresent(repository::save);
             }
-            filmToUpdate.ifPresent(repository::save);
-        }
-        return "updateFilm";
+
+            return "updateFilm";
+        
+
     }
 
     @RequestMapping("/likeFilm/{id}")
